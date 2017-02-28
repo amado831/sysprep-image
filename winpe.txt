@@ -1,0 +1,9 @@
+//instructions for creating winpe bootdisk
+
+copype amd64 c:\WinPE_amd64
+insert USB drive
+MakeWinPEMedia /UFD c:\WinPE_amd64 F:
+ reboot
+ select USB to boot from
+ wpeinit will run
+ 
