@@ -1,0 +1,15 @@
+// run to run diskpart script type diskpart /s scriptname.txt
+
+select disk 0
+select partition=1
+assign letter=S
+selct partition=2
+assign letter=C
+exit
+
+Dism /Capture-Image /ImageFile:c:\my-windows-partition.wim /CaptureDir:C:\ /Name:"My Windows partition"
+Dism /Capture-Image /ImageFile:s:\my-system-partition.wim /CaptureDir:S:\ /Name:"My system partition"
+net use z: \\Server\Share
+md Z:\Images\
+copy C:\my-windows-partition.wim z:\Images\
+copy c:\my-system-partition.wim z:\Images\
