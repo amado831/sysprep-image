@@ -1,0 +1,6 @@
+Sometimes you will get an error that says" Sysprep was not able to validate your Windows installation. 
+Review the log file at %WINDIR%System32\Sysprep\Panther\setupact.log for details. After resolving the issue, use Sysprep to validate
+your installation again. 
+
+What does that mean? It means that sysprep wants apps to be removed. The setupact.log file will tell you what to remove to be able to run Sysprep.
+
