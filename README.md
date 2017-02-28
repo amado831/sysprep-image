@@ -15,7 +15,7 @@ Other settings: Enable Administrator if necessary. Add network printers
 Run Disk Cleanup or CC cleaner
 Download Updates
 
-Second part of sysprep Capture the image 
+Second part of sysprep - Capture the image 
 Go to c:\windows\System32\sysprep\sysprep.exe
 OOBE,Generalize, Shutdown
 
