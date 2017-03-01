@@ -4,6 +4,10 @@ Steps for sysprep on Windows 10 1607
 Download the latest ADK version. Below is the link :
 https://developer.microsoft.com/en-us/windows/hardware/windows-assessment-deployment-kit
 
+Disable first sign-on animation(optional)
+Open Group Policy Editor
+Local Computer Policy->Computer Configuration->Administrative Templates->System->Logon->Show First sign-in animation->Disable
+
 Run the Windows 10 Installation
 
 Login with an account within the Administrator Group or with Domain Administrator privileges. 
