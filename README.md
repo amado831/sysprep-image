@@ -8,6 +8,7 @@ Run the Windows 10 Installation
 
 Disable first sign-on animation(optional)
 Open Group Policy Editor
+
 Local Computer Policy->Computer Configuration->Administrative Templates->System->Logon->Show First sign-in animation->Disable
 
 Login with an account within the Administrator Group or with Domain Administrator privileges. 
