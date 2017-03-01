@@ -20,6 +20,9 @@ After booting is complete,remove all the user profiles except Administrator and 
 Then go to 'This PC', click 'Manage' and find 'Local Users and Groups. Delete all groups and users except for Administrator and guest.
 Other settings: Enable Administrator if necessary. Add network printers
 
+To activate the inactive administrator account, run the command net user administrator /active:yes
+If you want to enable the guest account as well run the command net user guest /active:yes
+
 Run Disk Cleanup or CC cleaner
 
 Download Updates
