@@ -7,3 +7,5 @@ The setupact.log file will tell you what to remove to be able to run Sysprep.
 
 If you continue to get error messages the link below will provide helpful commands in powershell to remove offending apps
 https://support.microsoft.com/en-us/help/2769827/sysprep-fails-after-you-remove-or-update-windows-store-apps-that-include-built-in-windows-images
+
+http://www.askvg.com/guide-how-to-remove-all-built-in-apps-in-windows-10/
