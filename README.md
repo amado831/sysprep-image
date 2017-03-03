@@ -18,7 +18,7 @@ Remove local Administrator password.
 Go to c:\windows\System32\sysprep\sysprep.exe
 Select in the dropdown box 'audit', Click on 'Generalize' and then 'Reboot'.
 
-After system reboots, it will login as Administrator and you will not be prompted for a password if you did step 8 correctly. 
+After system reboots, it will login as Administrator and you will not be prompted for a password if you removed the password correctly. 
 
 After booting is complete,remove all the user profiles except Administrator and Default. They can be found in control panel/user profiles
 
