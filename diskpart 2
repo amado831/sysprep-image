@@ -1,0 +1,22 @@
+diskpart
+select disk 0
+clean
+create partition primary size=500
+select partition 1
+active
+format quick fs=ntfs
+assign letter=r
+create partition primary
+select partition 2
+active
+format quick fs=ntfs
+assign letter=c
+select partition 1
+active
+exit
+net use j: \\server\share /user:username "password"
+Dism /apply-image /imagefile:j:\w10reserved.wim /index:1 /ApplyDir:r:\
+Dism /apply-image /imagefile:j:\w10.wim /index:1 /ApplyDir:c:\
+copy /Y j:\SetupComplete.cmd c:\windows\setup\scripts\SetupComplete.cmd
+
+source: https://jacobsalmela.com/2016/03/30/how-to-image-a-computer-with-windows-10-using-dism/
