@@ -13,6 +13,12 @@ Local Computer Policy->Computer Configuration->Administrative Templates->System-
 
 Login with an account within the Administrator Group or with Domain Administrator privileges. 
 
+Other settings: Enable Administrator if necessary. Add network printers
+
+To activate the inactive administrator account, run the command net user administrator /active:yes
+If you want to enable the guest account as well run the command net user guest /active:yes
+
+
 Remove local Administrator password. 
 
 Go to c:\windows\System32\sysprep\sysprep.exe
@@ -23,10 +29,6 @@ After system reboots, it will login as Administrator and you will not be prompte
 After booting is complete,remove all the user profiles except Administrator and Default. They can be found in control panel/user profiles
 
 Then go to 'This PC', click 'Manage' and find 'Local Users and Groups. Delete all groups and users except for Administrator and guest.
-Other settings: Enable Administrator if necessary. Add network printers
-
-To activate the inactive administrator account, run the command net user administrator /active:yes
-If you want to enable the guest account as well run the command net user guest /active:yes
 
 Run Disk Cleanup or CC cleaner
 
