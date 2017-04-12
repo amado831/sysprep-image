@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<unattend xmlns="urn:schemas-microsoft-com:unattend">
+    <settings pass="windowsPE">
+        <component name="Microsoft-Windows-International-Core-WinPE" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <SetupUILanguage>
+                <UILanguage>en-US</UILanguage>
+            </SetupUILanguage>
+            <InputLocale>en-US</InputLocale>
+            <SystemLocale>en-US</SystemLocale>
+            <UILanguage>en-US</UILanguage>
+            <UserLocale>en-US</UserLocale>
+        </component>
+        <component name="Microsoft-Windows-Setup" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <DiskConfiguration>
+                <Disk wcm:action="add">
+                    <CreatePartitions>
+                        <CreatePartition wcm:action="add">
+                            <Order>1</Order>
+                            <Type>Primary</Type>
+                            <Extend>true</Extend>
+                        </CreatePartition>
+                    </CreatePartitions>
+                    <ModifyPartitions>
+                        <ModifyPartition wcm:action="add">
+                            <Active>true</Active>
+                            <Format>NTFS</Format>
+                            <Label>system</Label>
+                            <Order>1</Order>
+                            <PartitionID>1</PartitionID>
+                            <Letter>C</Letter>
+                        </ModifyPartition>
+                    </ModifyPartitions>
+                    <DiskID>0</DiskID>
+                </Disk>
+                <WillShowUI>OnError</WillShowUI>
+            </DiskConfiguration>
+            <ImageInstall>
+                <OSImage>
+                    <InstallTo>
+                        <DiskID>0</DiskID>
+                        <PartitionID>2</PartitionID>
+                    </InstallTo>
+                </OSImage>
+            </ImageInstall>
+            <UserData>
+                <AcceptEula>true</AcceptEula>
+                <FullName>tsg</FullName>
+                <Organization>DSC</Organization>
+            </UserData>
+            <EnableFirewall>true</EnableFirewall>
+            <EnableNetwork>true</EnableNetwork>
+        </component>
+    </settings>
+    <settings pass="specialize">
+        <component name="Microsoft-Windows-Deployment" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="NonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <RunSynchronous>
+                <RunSynchronousCommand wcm:action="add">
+                    <Credentials>
+                        <Domain>.\</Domain>
+                        <Password></Password>
+                        <Username></Username>
+                    </Credentials>
+                    <Path>powershell set-ExecutionPolicy remotesigned -Force</Path>
+                    <Description>install bash for windows.</Description>
+                    <Order>1</Order>
+                </RunSynchronousCommand>
+                <RunSynchronousCommand wcm:action="add">
+                    <Credentials>
+                        <Domain>.\</Domain>
+                        <Password></Password>
+                        <Username></Username>
+                    </Credentials>
+                    <Order>2</Order>
+                    <Description>bash for windows install</Description>
+                    <Path>powershell reg add &quot;HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\AppModelUnlock&quot; /t REG_DWORD /f /v &quot;AllowAllTrustedApps&quot; /d &quot;1&quot;</Path>
+                </RunSynchronousCommand>
+                <RunSynchronousCommand wcm:action="add">
+                    <Credentials>
+                        <Domain>.\</Domain>
+                        <Password></Password>
+                        <Username></Username>
+                    </Credentials>
+                    <Order>3</Order>
+                    <Path>powershell reg add &quot;HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\AppModelUnlock&quot; /t REG_DWORD /f /v &quot;AllowDevelopmentWithoutDevLicense&quot; /d &quot;1&quot;</Path>
+                    <Description>bash for windows install</Description>
+                </RunSynchronousCommand>
+                <RunSynchronousCommand wcm:action="add">
+                    <Credentials>
+                        <Domain>.\</Domain>
+                        <Password></Password>
+                        <Username></Username>
+                    </Credentials>
+                    <Order>4</Order>
+                    <Path>powershell Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux -NoRestart</Path>
+                    <Description>bash for windows install</Description>
+                    <WillReboot>Never</WillReboot>
+                </RunSynchronousCommand>
+            </RunSynchronous>
+        </component>
+    </settings>
+    <settings pass="oobeSystem">
+        <component name="Microsoft-Windows-International-Core" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <InputLocale>en-US</InputLocale>
+            <SystemLocale>en-US</SystemLocale>
+            <UILanguage>en-US</UILanguage>
+            <UserLocale>en-US</UserLocale>
+        </component>
+        <component name="Microsoft-Windows-Shell-Setup" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <UserAccounts>
+                <AdministratorPassword>
+                    <Value>=</Value>
+                    <PlainText>false</PlainText>
+                </AdministratorPassword>
+                <LocalAccounts>
+                    <LocalAccount wcm:action="add">
+                        <Password>
+                            <Value></Value>
+                            <PlainText>false</PlainText>
+                        </Password>
+                        <DisplayName></DisplayName>
+                        <Group>administrators</Group>
+                        <Name></Name>
+                    </LocalAccount>
+                </LocalAccounts>
+                <DomainAccounts>
+                    <DomainAccountList wcm:action="add">
+                        <Domain>sc</Domain>
+                    </DomainAccountList>
+                </DomainAccounts>
+            </UserAccounts>
+            <OOBE>
+                <HideEULAPage>true</HideEULAPage>
+                <HideOnlineAccountScreens>true</HideOnlineAccountScreens>
+                <HideOEMRegistrationScreen>true</HideOEMRegistrationScreen>
+                <HideLocalAccountScreen>true</HideLocalAccountScreen>
+                <HideWirelessSetupInOOBE>true</HideWirelessSetupInOOBE>
+                <ProtectYourPC>3</ProtectYourPC>
+            </OOBE>
+            <FirstLogonCommands>
+                <SynchronousCommand wcm:action="add">
+                    <CommandLine>c:\windows\system32\lxrun /install /y</CommandLine>
+                    <Description>bash install</Description>
+                    <RequiresUserInput>true</RequiresUserInput>
+                    <Order>1</Order>
+                </SynchronousCommand>
+                <SynchronousCommand wcm:action="add">
+                    <CommandLine>c:\windows\Setup\Scripts\SetupComplete.cmd</CommandLine>
+                    <RequiresUserInput>false</RequiresUserInput>
+                    <Order>3</Order>
+                </SynchronousCommand>
+                <SynchronousCommand wcm:action="add">
+                    <CommandLine>del c:\windows\system32\sysprep\unattend.xml</CommandLine>
+                    <RequiresUserInput>false</RequiresUserInput>
+                    <Order>2</Order>
+                </SynchronousCommand>
+            </FirstLogonCommands>
+        </component>
+    </settings>
+    <cpi:offlineImage cpi:source="wim:c:/images/win10x64-1067-base4.wim#win10x64-1067-base4" xmlns:cpi="urn:schemas-microsoft-com:cpi" />
+</unattend>
