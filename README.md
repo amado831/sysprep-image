@@ -17,7 +17,7 @@ Other settings: Enable Administrator if necessary. Add network printers
 
 To activate the inactive administrator account, run the command net user administrator /active:yes
 If you want to enable the guest account as well run the command net user guest /active:yes
-
+Launch a POWERSHELL as an ADMIN and run Get-AppxPackage -AllUsers | Remove-AppxPackage
 
 Remove local Administrator password. 
 
@@ -34,10 +34,17 @@ Run Disk Cleanup or CC cleaner
 
 Download Updates
 
-Second part of sysprep - Capture the image 
 
-Go to c:\windows\System32\sysprep\sysprep.exe
-OOBE,Generalize, Shutdown
+Download and unzip THIS simple unattend file for you SYSPREP or make your own using WAIK
+Copy the UNATTEND.XML to your C:\
+Open a CMD PROMPT as an Administrator
+CD into the C:\WINDOWS\SYSTEM32\SYSPREP folder
+Paste in this command
+sysprep /oobe /generalize /shutdown /unattend:C:\unattend.xml
+
+Power the machine up when it is done, PXE boot off the network and push the image to your Windows Deployment Services WDS server
+
+Second part of sysprep - Capture the image 
 
 Power down PC
 Turn on PC and halt boot process. Do not boot to local drive. Boot to a WinPE boot disk
