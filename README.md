@@ -34,13 +34,29 @@ Run Disk Cleanup or CC cleaner
 
 Download Updates
 
+Hi. I am trying to create a value in the default user profile runonce to point at a login script.
+This means that when you create a new user profile, the runonce script will execute when the user first logs in.
+As far as I am aware, this process can not be done by script, but only manually, like this.
+01) open regedit
+02) go to HKEY_USERS
+03) Load Hive
+04) Browse to C:\Documents and Settings\Default User\ntuser.dat
+05) give it a temporary key name, for example ZZZ
+06) go to HKEY_USERS\ZZZ\Software\Microsoft\Windows\CurrentVersion
+07) Create a key RunOnce
+08) Create a string value there eg: First Run, then change the value to where your script sits, eg: "D:\User\zxp\newUserProfile.cmd"
+09) go back to HKEY_USERS\ZZZ
+10) unload the hive
+Now when you create a new user, the runonce value runs on the first login so you can run a first time user script; eg newUserProfile.cmd
+
+
 
 Download and unzip THIS simple unattend file for you SYSPREP or make your own using WAIK
 Copy the UNATTEND.XML to your C:\
 Open a CMD PROMPT as an Administrator
 CD into the C:\WINDOWS\SYSTEM32\SYSPREP folder
 Paste in this command
-sysprep /oobe /generalize /shutdown /unattend:C:\unattend.xml
+sysprep /oobe /generalize /shutdown /unattend:C:\windows\setup\scripts\unattend.xml
 
 Power the machine up when it is done, PXE boot off the network and push the image to your Windows Deployment Services WDS server
 
